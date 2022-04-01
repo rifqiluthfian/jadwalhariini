@@ -5,8 +5,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.appcompat.view.ActionMode
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -16,27 +20,30 @@ import org.d3if0084.jadwalhariini.data.CatatanDb
 import org.d3if0084.jadwalhariini.data.MainAdapter
 import org.d3if0084.jadwalhariini.databinding.ActivityMainBinding
 
-
-
-
 class MainActivity : AppCompatActivity(), MainDialog.DialogListener {
 
 
     private var actionMode: ActionMode? = null
     private val actionModeCallback = object : ActionMode.Callback {
-        override fun onActionItemClicked(mode: ActionMode?,
-                                         item: MenuItem?): Boolean {
+        override fun onActionItemClicked(
+            mode: ActionMode?,
+            item: MenuItem?
+        ): Boolean {
             if (item?.itemId == R.id.menu_delete) {
                 deleteData()
                 return true
             }
             return false
         }
-        override fun onCreateActionMode(mode: ActionMode?,
-                                        menu: Menu?): Boolean {
+
+        override fun onCreateActionMode(
+            mode: ActionMode?,
+            menu: Menu?
+        ): Boolean {
             mode?.menuInflater?.inflate(R.menu.main_mode, menu)
             return true
         }
+
         override fun onPrepareActionMode(mode: ActionMode?,
                                          menu: Menu?): Boolean {
             mode?.title = myAdapter.getSelection().size.toString()
@@ -83,6 +90,15 @@ class MainActivity : AppCompatActivity(), MainDialog.DialogListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val switch: Switch = findViewById(R.id.switch1)
+
+        switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+            }
+        }
         binding.fab.setOnClickListener {
             MainDialog().show(supportFragmentManager, "MainDialog")
             myAdapter = MainAdapter(handler)
@@ -114,6 +130,4 @@ class MainActivity : AppCompatActivity(), MainDialog.DialogListener {
         }
         show()
     }
-
-
 }
