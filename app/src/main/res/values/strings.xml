@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Jadwal Hari Ini</string>
+    <string name="catatan">Catatan</string>
+    <string name="jam">Jam / Contoh : 15:30</string>
+    <string name="tambah_catatan">Tambah Catatan</string>
+    <string name="simpan">Simpan</string>
+    <string name="batal">Batal</string>
+    <string name="catatan_wajib_diisi">Catatan Harus Di isi</string>
+    <string name="jam_wajib_diisi">Jam wajib diisi</string>
+    <string name="hapus">Hapus</string>
+    <string name="catatan_klik">%1$s diklik!</string>
+    <string name="pesan_hapus">Hapus Catatan?</string>
+    <string name="tidak_ada_data">Tidak ada data</string>
+
 </resources>
