@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Jadwal Hari Ini</string>
     <string name="catatan">Catatan</string>
-    <string name="jam">Jam / Contoh : 15:30</string>
+    <string name="jam">Jam / Contoh : 09</string>
     <string name="tambah_catatan">Tambah Catatan</string>
     <string name="simpan">Simpan</string>
     <string name="batal">Batal</string>
