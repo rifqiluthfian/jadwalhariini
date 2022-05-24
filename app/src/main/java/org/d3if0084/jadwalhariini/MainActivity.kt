@@ -3,6 +3,7 @@ package org.d3if0084.jadwalhariini
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Switch
@@ -13,6 +14,8 @@ import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.appcompat.view.ActionMode
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import org.d3if0084.jadwalhariini.data.Catatan
@@ -21,10 +24,11 @@ import org.d3if0084.jadwalhariini.data.MainAdapter
 import org.d3if0084.jadwalhariini.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), MainDialog.DialogListener {
-
-
+    private lateinit var navController: NavController
     private var actionMode: ActionMode? = null
     private val actionModeCallback = object : ActionMode.Callback {
+
+
         override fun onActionItemClicked(
             mode: ActionMode?,
             item: MenuItem?
@@ -54,6 +58,7 @@ class MainActivity : AppCompatActivity(), MainDialog.DialogListener {
             actionMode = null
         }
     }
+
 
     private val viewModel: MainViewModel by lazy {
         val dataSource = CatatanDb.getInstance(this).dao
@@ -90,6 +95,10 @@ class MainActivity : AppCompatActivity(), MainDialog.DialogListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.fragment) as NavHostFragment
+        navController = navHostFragment.navController
+
         val switch: Switch = findViewById(R.id.switch1)
 
         switch.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -114,10 +123,12 @@ class MainActivity : AppCompatActivity(), MainDialog.DialogListener {
             })
         }
     }
+
     override fun processDialog(catatan: Catatan) {
         viewModel.insertData(catatan)
 
     }
+
     private fun deleteData() = AlertDialog.Builder(this).apply {
         setMessage(R.string.pesan_hapus)
         setPositiveButton(R.string.hapus) { _, _ ->

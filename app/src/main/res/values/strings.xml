@@ -11,5 +11,9 @@
     <string name="catatan_klik">%1$s diklik!</string>
     <string name="pesan_hapus">Hapus Catatan?</string>
     <string name="tidak_ada_data">Tidak ada data</string>
+    <string name="belum_ada_data">Belum ada data</string>
+    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="copyright">Aplikasi Jadwal Hari ini dibuat tahun 2022 oleh Rifqi Luthfian Thariq</string>
 
 </resources>
